@@ -1,3 +1,10 @@
+## About Project
+
+- This project was built to demonstrate CRUD (Create, Read, Update, Delete) usages with Laravel
+- Artisan commands
+- Eloquent Relationships
+- Syntax structures like Blade.php
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
