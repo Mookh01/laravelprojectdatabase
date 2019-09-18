@@ -29,52 +29,69 @@ class ProjectsController extends Controller
     }
 
     //SHOW
-    public function show($id)
+    //original setup
+    // public function show($id) {
+        // $project = Project::findOrFail($id);
+        //return view('projects.show', compact('project'));
+    //}
+
+    //route-model-binding ...this is type hinting
+    public function show(Project $project)
     {
-        $project = ProjectOrFailOrFail($id);
-        return view('projects.show', compact('projects'));
+        return view('projects.show', compact('project'));
     }
 
     //EDIT
-    public function edit($id) //example.com/projects/1/edit
+    //public function edit($id) //example.com/projects/1/edit
+    public function edit(Project $project)
     {
         // return $id;
         // return view('projects.edit');
-       $project = ProjectOrFailOrFail($id);
+    //    $project = Project::findOrFail($id);
        return view('projects.edit', compact('project'));
     }
 
     //UPDATE
-    public function update($id)
+    //public function update($id)
+    public function update(Project $project)
     {
+        $project->update(request(['title', 'description']));
         //dd('hello!');
         // return view('projects.update');
         //dd(request()->all());
-        $project = ProjectOrFailOrFail($id);
-        $project->title = request('title');
-        $project->description = request('description');
-
-        $project->save();
+        // $project = Project::findOrFail($id);
+        // $project->title = request('title');
+        // $project->description = request('description');
+        // $project->save();
 
         return redirect('/projects');
     }
 
     //DESTROY
-    public function destroy($id)
+    //public function destroy($id)
+    public function destroy(Project $project)
     {
-         //dd('hello!');
+        //dd('hello!');
         // return view('projects.destroy');
-        Project::findOrFail($id)->delete();
+        // Project::findOrFail($id)->delete();
+        $project->delete();
         return redirect('/projects');
     }
 
     //STORE
     public function store()
     {
-        $project = new Project();
-        $project->title = request('title');
-        $project->description = request('description');
-        $project->save();
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        Project::create(request(['title', 'description']));
+
+        // $project = new Project();
+        // $project->title = request('title');
+        // $project->description = request('description');
+        // $project->save();
 
         return redirect('/projects');
         //return request()->all();

@@ -36,6 +36,16 @@
                     <button class="submit" class="button">Delete Project</button>
                 </div>
             </div>
+
+            @if ($errors->any())
+                <div class="notification is-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
 
 @endsection
