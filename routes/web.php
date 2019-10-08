@@ -32,3 +32,6 @@ Route::get('/', function () {
 
 // Option: #2
 Route::resource('/projects', 'ProjectsController');
+//Route::resource('/projects/modal', 'ProjectsController@modal');
+Route::post('/projects/{project}/tasks', 'ProjectTaskController@store');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');

@@ -14,12 +14,17 @@ class ProjectsController extends Controller
 
     }
     //this will look into the file structure resources/views/projects/index.blade.php
-
     //INDEX
     public function index()
     {
         $projects = Project::all();
         return view('projects.index', compact('projects'));
+    }
+
+    //MODAL
+    public function modal()
+    {
+        return view('projects.modal');
     }
 
     //CREATE
